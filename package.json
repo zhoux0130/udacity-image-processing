@@ -1,0 +1,28 @@
+{
+  "name": "image-processing",
+  "version": "1.0.0",
+  "description": "udacity project 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zhoux0130/udacity-image-processing.git"
+  },
+  "keywords": [
+    "udacity",
+    "full",
+    "stack",
+    "js",
+    "developer",
+    "project",
+    "1"
+  ],
+  "author": "misu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhoux0130/udacity-image-processing/issues"
+  },
+  "homepage": "https://github.com/zhoux0130/udacity-image-processing#readme"
+}
