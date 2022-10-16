@@ -1,6 +1,6 @@
-import { JSONSchemaType } from 'ajv'
 import express from 'express'
 import imageHandler, { GetImageQuery } from '../../utilities/images'
+import fs from 'fs'
 
 const imageRouter = express.Router()
 // image handler处理请求的地方，并且返回对应的处理后的数据到server
@@ -14,9 +14,12 @@ imageRouter.get('/welcome', async(req, res) => {
         return
     }
     const data = await imageHandler(filename, width, height)
-
-    res.send('image handler welcome')
+    const thumbFile = './assets/thumb/'+ filename + '_thumb.png'
+    fs.readFile(thumbFile, function (err, data) {
+        if (err) throw err; 
+        res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+        res.end(data); // Send the file data to the browser.
+    });
 })
-
 
 export default imageRouter;
