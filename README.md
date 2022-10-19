@@ -11,7 +11,7 @@
 ## Usage
 
 #### Endpoint to resize images
-[resize the image endpoint](http://localhost:3000/api/image/get?filename=APP3&width=400&height=400)
+[http://localhost:3000/api/image/get?filename=APP3&width=400&height=400](http://localhost:3000/api/image/get?filename=APP3&width=400&height=400)
 
 #### Parameters
 * filename: Available filenames are: APP2,APP4
