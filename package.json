@@ -4,25 +4,46 @@
   "description": "udacity project 1",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsc",
+    "jasmine": "jasmine",
+    "start": "nodemon src/index.ts",
+    "test": "npm run build && npm run jasmine",
+    "lint": "eslint 'src/**/*.ts'",
+    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/zhoux0130/udacity-image-processing.git"
   },
-  "keywords": [
-    "udacity",
-    "full",
-    "stack",
-    "js",
-    "developer",
-    "project",
-    "1"
-  ],
+  "keywords": [],
   "author": "misu",
   "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/jasmine": "^4.3.0",
+    "@types/node": "^18.11.0",
+    "@types/sharp": "^0.31.0",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
   "bugs": {
     "url": "https://github.com/zhoux0130/udacity-image-processing/issues"
   },
-  "homepage": "https://github.com/zhoux0130/udacity-image-processing#readme"
+  "homepage": "https://github.com/zhoux0130/udacity-image-processing#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "jasmine": "^4.4.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "sharp": "^0.31.1",
+    "supertest": "^6.3.0"
+  }
 }
