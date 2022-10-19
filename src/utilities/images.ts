@@ -1,26 +1,38 @@
-// 相当于服务层，此处放置处理Image的逻辑代码。在Route中只做调用
-import fs from 'fs'
-import sharp from 'sharp'
-const assetsOriginPath = __dirname + '/assets/origin/'
-const assetsThumbPath = __dirname + '/assets/thumb/'
+import { existsSync } from 'fs';
+import sharp from 'sharp';
+const assetsOriginPath = './assets/origin/';
+const assetsThumbPath = './assets/thumb/';
 
-export interface GetImageQuery {
-    filename: string
-    width: string
-    height: string
-}
+const imageHandler = async (
+  filename: string,
+  width: string,
+  height: string
+): Promise<string> => {
+  const fullFilename = assetsOriginPath + filename + '.png';
+  const thumbFile =
+    assetsThumbPath + filename + '_' + width + '@' + height + '.png';
 
-const imageHandler = async (filename: string, width: string, height: string) => {
-    //按照传入参数读取服务器上的文件
-    const fullFilename = './assets/origin/' + filename + '.png'
-    const thumbFile = './assets/thumb/'+ filename + '_thumb.png'
-    
-    //使用sharp库，按照要求尺寸处理图片,并将文件写入到thumb目录
-    sharp(fullFilename).
-    resize({
-        width:parseInt(width), 
-        height:parseInt(height)
-    }).toFile(thumbFile)
-}
+  // check if the origin image exist
+  if (!existsSync(fullFilename)) {
+    return '';
+  }
+
+  //add cache
+  //If the same size image already existed, we use the existing image.
+  //Or I will use sharp lib to resizing image and save it to local
+  if (existsSync(thumbFile)) {
+    return thumbFile;
+  }
+
+  //use sharp lib, resize image and save it to thumb folder
+  await sharp(fullFilename)
+    .resize({
+      width: parseInt(width),
+      height: parseInt(height),
+    })
+    .toFile(thumbFile);
+
+  return thumbFile;
+};
 
 export default imageHandler;

@@ -8,8 +8,8 @@
     "jasmine": "jasmine",
     "start": "nodemon src/index.ts",
     "test": "npm run build && npm run jasmine",
-    "lint": "eslint 'src/**/*.js'",
-    "prettier": "prettier --config .prettierrc 'src/**/*.js' --write"
+    "lint": "eslint 'src/**/*.ts'",
+    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write"
   },
   "repository": {
     "type": "git",
