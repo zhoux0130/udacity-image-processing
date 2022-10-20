@@ -10,18 +10,28 @@ export interface GetImageQuery {
   height: string;
 }
 
-imageRouter.get('/get', async (req, res) => {
+imageRouter.get('/get', async (req: express.Request, res: express.Response) => {
   const { filename, width, height } = req.query as unknown as GetImageQuery;
-  if (!filename) {
-    res.send(
-      'The following error occured processing image, 【Error】Input file is missing'
-    );
-    return;
+  if(!filename || !width || !height){
+    res.send('Make sure you input the right params.The correct params look like filename=?&heigh=?&width=?')
+    return
   }
+  //handle invalid height or width
+  const heightNum: number = Number(height)
+  const widthNum: number = Number(width)
+  if(isNaN(heightNum) || heightNum <= 0){
+      res.send('The height params should be a positive int number!')
+      return
+  }
+  if(isNaN(widthNum) || widthNum <= 0){
+    res.send('The width params should be a positive int number!')
+    return
+    }
 
   const path = await imageHandler(filename, width, height);
+  //handle invalid filename
   if (path === '') {
-    res.send('Please check the filename is corrected...');
+    res.send('Make sure you input the right filename. The supported filenames include APP2, APP4');
     return;
   }
 

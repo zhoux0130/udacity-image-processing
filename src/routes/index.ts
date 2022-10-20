@@ -5,7 +5,7 @@ const routes = express.Router();
 //imageRouter里面的全部endpoints，都是已image作为入口
 routes.use('/image', imageRouter);
 
-routes.get('/', (req, res) => {
+routes.get('/', (req: express.Request, res: express.Response) => {
   res.send('Main routes');
 });
 
